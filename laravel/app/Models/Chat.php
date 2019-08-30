@@ -10,4 +10,7 @@ class Chat extends Model
     public function users(){
         return $this->belongsToMany('App\Models\User','chats_users', 'chat_id', 'user_id');
     }
+    public function userInfo(){
+        return $this->hasMany('\App\Models\ChatUsers','chat_id','id');
+    }
 }

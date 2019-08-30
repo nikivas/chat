@@ -12,5 +12,14 @@ class UserController extends Controller
         $user = \App\Models\User::create(['username' => $json->username]);
         return $user->id;
     }
+
+    public function getChats(Request $request){
+        $json = json_decode($request->getContent());
+        $chats = \App\Models\Chat::with(['userInfo'=> function($q) use($json){
+            $q->where('user_id','=',$json->user);
+        }])->get();
+        return json_encode($chats);
+
+    }
     
 }
