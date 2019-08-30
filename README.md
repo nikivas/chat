@@ -1,13 +1,13 @@
 
-##TL;DR
-<
+## TL;DR
+```
 git clone https://github.com/nikivas/chat.git
 cd ./chat/laradock/
 docker-compose up -d nginx mysql phpmyadmin redis workspace
 cd ./../laravel/
 php artisan create:db
 php artisan migrate:refresh
->
+```
 
 ## Установка
 
