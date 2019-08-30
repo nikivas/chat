@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use \App\Models\Chat;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -13,7 +13,12 @@ class MessageController extends Controller
             'chat_id' => $json->chat, 
             'text' => $json->text
         ]);
-
         return $message->id;
+    }
+
+    public function get(Request $request){
+        $chat_id = json_decode($request->getContent())->chat;
+        $messages = \App\Models\Message::where('chat_id','=',$chat_id)->orderBy('created_at')->get();
+        return $messages;
     }
 }
