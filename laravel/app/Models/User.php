@@ -11,4 +11,7 @@ class User extends Model
 {
     protected $fillable = ['username'];
 
+    public function chats(){
+        return $this->belongsToMany('App\Models\Chat','chats_users', 'user_id', 'chat_id');
+    }
 }

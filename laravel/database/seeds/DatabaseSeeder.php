@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $user = \App\Models\User::create(['username' => 'nikivas']);
+        
     }
 }
