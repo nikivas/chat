@@ -7,6 +7,7 @@ docker-compose up -d nginx mysql phpmyadmin redis workspace
 cd ./../laravel/
 php artisan create:db
 php artisan migrate:refresh
+php artisan dbhost:configure
 ```
 
 ## Установка
@@ -20,3 +21,4 @@ php artisan migrate:refresh
 - затем перейти в папку laravel ( cd "./../laravel/")
 - затем запустить команду создающую базу в mysql ("php artisan create:db")
 - после чего запустить миграции таблиц в базе("php artisan migrate:refresh")
+- и под конец мы дружим в настройках .env файла php и mysql
