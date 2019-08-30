@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('users/add','UserController@add');
-Route::post('users/add','UserController@add');
+Route::get('users/add', 'UserController@add');
+Route::post('users/add', 'UserController@add');
 Route::get('users/all', 'UserController@all');
+Route::post('chats/add', 'ChatController@add');

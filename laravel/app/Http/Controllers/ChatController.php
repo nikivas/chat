@@ -13,5 +13,6 @@ class ChatController extends Controller
         foreach ($json->users as $value) {
             ChatUsers::create(['user_id'=>$value, 'chat_id' => $chat->id]);
         }
+        return $chat->id;
     }
 }
