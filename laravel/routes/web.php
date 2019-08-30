@@ -20,3 +20,4 @@ Route::post('users/add', 'UserController@add');
 Route::get('users/all', 'UserController@all');
 Route::post('chats/add', 'ChatController@add');
 Route::post('chats/get', 'UserController@getChats');
+Route::post('messages/add', 'MessageController@add');
