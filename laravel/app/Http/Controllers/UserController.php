@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function add(Request $request){
         $json = json_decode($request->getContent());
-        $user = \App\Models\User::create(['username' => $json->username]);
+        $user = User::create(['username' => $json->username]);
         return $user->id;
     }
 
@@ -26,7 +26,10 @@ class UserController extends Controller
             ->join('chats','chats_users.chat_id', '=', 'chats.id')
             ->joinSub($messages,'last_messages',function($join){
                 $join->on('chats.id','=','last_messages.chat_id');
-            })->orderByDesc('last_messages.last_post_time')->select('chats.id', 'chats.name', 'chats.created_at', 'last_messages.last_post_time')->distinct()->get();
+            })->orderByDesc('last_messages.last_post_time')
+            ->select('chats.id', 'chats.name', 'chats.created_at', 'last_messages.last_post_time')
+            ->distinct()
+            ->get();
 
         return json_encode($chats);
     }
