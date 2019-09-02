@@ -15,6 +15,7 @@ class ChatController extends Controller
         $json = json_decode($request->getContent());
         $rules = [ 
             'name' => 'required',
+            'users' => 'required',
             'users.*' => 'required|regex:/^(\d+[,]{1})*(\d+){1}$/i'
         ];
 
@@ -24,7 +25,7 @@ class ChatController extends Controller
                 'status' => 400
             ],400);
         }
-        
+
         $chat = Chat::create(['name'=> $json->name]);
         foreach ($json->users as $value) {
             ChatUsers::create(['user_id'=>$value, 'chat_id' => $chat->id]);
@@ -50,7 +51,7 @@ class ChatController extends Controller
 
         $chats = DB::table('chats_users')
             ->join('chats','chats_users.chat_id', '=', 'chats.id')
-            ->joinSub($messages,'last_messages',function($join){
+            ->leftjoinSub($messages,'last_messages',function($join){
                 $join->on('chats.id','=','last_messages.chat_id');
             })->where('chats_users.user_id','=',$json->user)
             ->orderByDesc('last_messages.last_post_time')
