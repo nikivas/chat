@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->bigInteger('user_id');
             $table->longText('text');
             $table->timestamps();
+            $table->index(['user_id','chat_id']);
         });
     }
 

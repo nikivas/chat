@@ -17,6 +17,7 @@ class CreateChatUserMigration extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->bigInteger('chat_id');
+            $table->index(['user_id','chat_id']);
         });
     }
 
